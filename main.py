@@ -6,6 +6,7 @@ from PIL import Image
 
 
 class PhotoSort:
+    DATETIME_EXIF_INFO_ID = 36867
     extensions = ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.psd', '.cr2', '.dng', '.raw']
 
     def folder_path(self, file):
@@ -15,8 +16,8 @@ class PhotoSort:
     def photo_shooting_date(self, file):
         img = Image.open(file)
         info = img.getexif()
-        if 36867 in info:
-            date = info[36867]
+        if self.DATETIME_EXIF_INFO_ID in info:
+            date = info[self.DATETIME_EXIF_INFO_ID]
             date = datetime.strptime(date, '%Y:%m:%d %H:%M:%S')
         else:
             date = datetime.fromtimestamp(os.path.getmtime(file))
