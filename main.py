@@ -30,4 +30,10 @@ def move_file(file):
     shutil.move(file, new_folder + '/' + file)
 
 
+def organize_files(self):
+    photo = [filename for filename in os.listdir('.') if any(filename.endswith(ext) for ext in extensions)]
+    for filename in photo:
+        self.move_file(filename)
+
+
 print(move_file('yellow-lab.jpeg'))
