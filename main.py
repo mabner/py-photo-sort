@@ -4,6 +4,8 @@ from datetime import datetime
 
 from PIL import Image
 
+extensions = ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.psd', '.cr2', '.dng', '.raw']
+
 
 def folder_path(file):
     date = photo_shooting_date(file)
