@@ -7,7 +7,8 @@ from PIL import Image
 
 class PhotoSort:
     DATETIME_EXIF_INFO_ID = 36867
-    extensions = ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.psd', '.cr2', '.dng', '.raw']
+    extensions = ['jpg', 'jpeg', 'png', 'bmp', 'tif',
+                  'tiff', 'psd', 'cr2', 'dng', 'raw']
 
     def folder_path(self, file):
         date = self.photo_shooting_date(file)
@@ -31,7 +32,9 @@ class PhotoSort:
 
     def organize_files(self):
         photo = [filename for filename in os.listdir('.')
-                 if any(filename.endswith(ext) for ext in self.extensions)]
+                 if os.path.isfile(filename) and
+                 any(filename.lower().endswith('.' + ext.lower())
+                     for ext in self.extensions)]
         for filename in photo:
             self.move_file(filename)
 
