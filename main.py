@@ -4,6 +4,11 @@ from datetime import datetime
 from PIL import Image
 
 
+def folder_path(file):
+    date = photo_shooting_date(file)
+    return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d')
+
+
 def photo_shooting_date(file):
     img = Image.open(file)
     info = img.getexif()
@@ -15,4 +20,4 @@ def photo_shooting_date(file):
     return date
 
 
-print(photo_shooting_date('test.jpg'))
+print(folder_path('yellow-lab.jpeg'))
