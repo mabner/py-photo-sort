@@ -1,4 +1,5 @@
 import os
+import shutil
 from datetime import datetime
 
 from PIL import Image
@@ -20,4 +21,11 @@ def photo_shooting_date(file):
     return date
 
 
-print(folder_path('yellow-lab.jpeg'))
+def move_file(file):
+    new_folder = folder_path(file)
+    if not os.path.exists(new_folder):
+        os.makedirs(new_folder)
+    shutil.move(file, new_folder + '/' + file)
+
+
+print(move_file('yellow-lab.jpeg'))
